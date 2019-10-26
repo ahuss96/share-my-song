@@ -17,30 +17,34 @@ export class LoginComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router, private navbar: NavbarComponent) { }
 
   ngOnInit() {
-    this.createForm();
+    // init loginForm
+    this.initLoginForm();
   }
 
   // getter for form fields
   get f(): { [key: string]: AbstractControl } { return this.loginForm.controls; }
 
-  createForm() {
+  initLoginForm() {
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     })
   }
 
-  onLoginSubmit () {
+  onSubmit () {
+    // used to show errors in form only when user has submitted.
     this.submitted = true;
     if (this.loginForm.valid) {
       const credentials = this.loginForm.value;
 
       this.auth.authenticateUser(credentials).subscribe(data => {
         if (data.success) {
+          // store user and jwt token in localstorage
           this.auth.storeUserData(data.token, data.user);
           this.router.navigate(['/'])
         }
         else {
+          // TODO handle UI for invalid credentials
           this.invalidDetails = true;
         }
       })

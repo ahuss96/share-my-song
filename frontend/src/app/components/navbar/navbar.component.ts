@@ -16,6 +16,8 @@ export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    // if user loads page - already logged in - so does not need to login.
+    // User still needs to be populated (usually done on login)
     if (this.auth.isLoggedIn() && !this.auth.user) {
       this.user = this.auth.getUser();
     }
