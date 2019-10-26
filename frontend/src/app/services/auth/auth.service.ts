@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 export class AuthService {
   baseUrl: string = 'http://localhost:3000/users';
   headers: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+  user: IUser;
 
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService, private router: Router) { }
 
@@ -35,10 +36,16 @@ export class AuthService {
   storeUserData(token, user): void {
     localStorage.setItem('auth_token', token);
     localStorage.setItem('user', JSON.stringify(user));
+    this.user = user;
   }
 
   getToken(): string {
     return localStorage.getItem('auth_token');
+  }
+
+  getUser(): IUser {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    return this.user;
   }
 
   isLoggedIn(): boolean {

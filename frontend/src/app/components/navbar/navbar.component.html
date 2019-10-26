@@ -1,0 +1,24 @@
+<nav class="navbar navbar-dark bg-dark justify-content-between">
+  <!--<div class="container">-->
+    <a class="logo-link mr-2" [routerLink]="['/']">
+      <img src="../../../assets/images/spiral.png" alt="logo" class="logo">
+    </a>
+    <a class="nav-link btn" *ngIf="auth.isLoggedIn()" [routerLink]="['/dashboard']">Dashboard</a>
+    <div class="ml-md-auto" ngbDropdown>
+      <a class="btn nav-link mr-3" *ngIf="!auth.isLoggedIn()" [routerLink]="['/login']">Login</a>
+      <a class="btn btn-outline-dark" *ngIf="!auth.isLoggedIn()" [routerLink]="['/register']">Register</a>
+      <button
+        ngbDropdownToggle
+        class="btn nav-link profile-dropdown"
+        *ngIf="auth.isLoggedIn()">
+        {{auth.user.name || user.name}}
+        <!--<fa-icon class="fa-icon" [icon]="faAngleDown"></fa-icon>-->
+      </button>
+      <nav class="profile-menu" ngbDropdownMenu>
+        <a class="profile-item" ngbDropdownItem>My Songs</a>
+        <!--<button class="profile-item" ngbDropdownItem (click)="auth.logout()"><fa-icon class="mr-2" *ngIf="profileOpen" [icon]="faSignOutAlt"></fa-icon>Logout</button>-->
+        <button class="profile-item" ngbDropdownItem (click)="auth.logout()">Logout<fa-icon class="ml-2" [icon]="faSignOutAlt"></fa-icon></button>
+      </nav>
+    </div>
+  <!--</div>-->
+</nav>

@@ -1,0 +1,49 @@
+.navbar {
+  height: 55px;
+  padding: 0 15px;
+}
+
+.btn-outline-dark {
+  background-color: transparent;
+  border: 1px solid #f7cf3b;
+  color: #f7cf3b;
+
+  &:hover {
+    background-color: #f7cf3b;
+    color: #343a40;
+  }
+}
+
+.logo {
+  height: 32px;
+}
+
+.nav-link {
+  color: #f7cf3b;
+  display: inline;
+
+  &:hover {
+    color: #f7e83b;
+  }
+}
+
+.profile-dropdown:focus {
+  &::after {
+    transform: rotate(180deg);
+  }
+}
+
+.profile-menu {
+  top: 47px;
+  padding: 0;
+
+  .profile-item {
+    cursor: pointer;
+    padding: 12px 25px;
+
+    &:focus, &:active {
+      background-color: rgb(232, 232, 232);
+      color: #343a40;
+    }
+  }
+}

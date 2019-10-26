@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { JwtModule } from '@auth0/angular-jwt'
+import { JwtModule } from '@auth0/angular-jwt';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule  } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthService } from "./services/auth/auth.service";
 import { AuthGuard } from "./guards/auth.guard";
 import {environment} from "../environments/environment";
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 export function tokenGetter(): string {
   return localStorage.getItem('auth_token');
@@ -22,7 +25,8 @@ export function tokenGetter(): string {
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,9 +39,11 @@ export function tokenGetter(): string {
         tokenGetter: tokenGetter,
         whitelistedDomains: [environment.baseUrl]
       }
-    })
+    }),
+    FontAwesomeModule,
+    NgbModule,
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, NavbarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

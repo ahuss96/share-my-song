@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import { AuthService } from "../../../services/auth/auth.service";
 import { Router } from "@angular/router";
+import { NavbarComponent } from "../../navbar/navbar.component";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   submitted: boolean;
   invalidDetails: boolean;
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private navbar: NavbarComponent) { }
 
   ngOnInit() {
     this.createForm();
