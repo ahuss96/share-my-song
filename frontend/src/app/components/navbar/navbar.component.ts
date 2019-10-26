@@ -10,11 +10,8 @@ import { faAngleDown, faAngleUp, faSignOutAlt } from '@fortawesome/free-solid-sv
 })
 export class NavbarComponent implements OnInit {
   user: IUser;
-  faAngleDown = faAngleDown;
   faSignOutAlt = faSignOutAlt;
   auth = this.authService;
-  profileOpen: boolean;
-  //
 
   constructor(private authService: AuthService) { }
 
