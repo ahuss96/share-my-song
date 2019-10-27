@@ -1,16 +1,17 @@
 <nav class="navbar navbar-dark bg-dark justify-content-between">
-    <a class="logo-link mr-2" [routerLink]="['/']">
+    <a class="logo-link mr-30" [routerLink]="['/']">
       <img src="../../../assets/images/spiral.png" alt="logo" class="logo">
+      <span class="ml-2 logo-text">ShareMySong</span>
     </a>
-    <a class="nav-link btn" *ngIf="auth.isLoggedIn()" [routerLink]="['/dashboard']">Dashboard</a>
+    <a class="nav-link btn" *ngIf="auth.isLoggedIn()" [routerLink]="['/dashboard']"><span>Dashboard</span></a>
     <div class="ml-md-auto" ngbDropdown>
-      <a class="btn nav-link mr-3" *ngIf="!auth.isLoggedIn()" [routerLink]="['/login']">Login</a>
+      <a class="btn nav-link mr-3" *ngIf="!auth.isLoggedIn()" [routerLink]="['/login']"><span>Login</span><fa-icon class="ml-2" [icon]="faSignInAlt"></fa-icon></a>
       <a class="btn btn-outline-dark" *ngIf="!auth.isLoggedIn()" [routerLink]="['/register']">Register</a>
       <button
         ngbDropdownToggle
         class="btn nav-link profile-dropdown"
         *ngIf="auth.isLoggedIn()">
-        {{auth.user.name || user.name}}
+        <span>{{auth.user.name || user.name}}</span>
       </button>
       <nav class="profile-menu" ngbDropdownMenu>
         <a class="profile-item" ngbDropdownItem>My Songs</a>

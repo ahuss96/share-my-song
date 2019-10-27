@@ -4,24 +4,24 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from "rxjs";
 import { IUser } from "../../components/user/user.model";
 import { Router } from "@angular/router";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl: string = 'http://localhost:3000/users';
   headers: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   user: IUser;
 
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService, private router: Router) { }
 
-  registerUser(user: IUser): Observable<Object> {
+  registerUser(user: IUser): Observable<any> {
     // let headers = new HttpParams().set('Authorization', this.authToken);
-    return this.http.post<HttpResponse<JSON>>(this.baseUrl + '/register', user, { headers: this.headers });
+    return this.http.post<HttpResponse<JSON>>(environment.baseUrl + 'users/register', user, { headers: this.headers });
   }
 
   authenticateUser(credentials: {}): Observable<any> {
-    return this.http.post<HttpResponse<JSON>>(this.baseUrl + '/authenticate', credentials);
+    return this.http.post<HttpResponse<JSON>>(environment.baseUrl + 'users/authenticate', credentials);
   }
   //
   // getProfile () {

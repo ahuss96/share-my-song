@@ -15,6 +15,7 @@ import { AuthService } from "./services/auth/auth.service";
 import { AuthGuard } from "./guards/auth.guard";
 import {environment} from "../environments/environment";
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export function tokenGetter(): string {
   return localStorage.getItem('auth_token');
@@ -27,6 +28,7 @@ export function tokenGetter(): string {
     RegisterComponent,
     HomeComponent,
     NavbarComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

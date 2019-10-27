@@ -1,16 +1,26 @@
+@import '../../../sass/custom/colours';
+
 .navbar {
   height: 55px;
   padding: 0 15px;
 }
 
-.btn-outline-dark {
-  background-color: transparent;
-  border: 1px solid #f7cf3b;
-  color: #f7cf3b;
+.mr-30 {
+  margin-right: 30px;
+}
+
+.logo-link {
+  color: $yellow;
 
   &:hover {
-    background-color: #f7cf3b;
-    color: #343a40;
+    text-decoration: none;
+  }
+
+  .logo-text {
+    position: relative;
+    bottom: 1px;
+    vertical-align: middle;
+    font-size: 18px;
   }
 }
 
@@ -19,11 +29,19 @@
 }
 
 .nav-link {
-  color: #f7cf3b;
+  color: $yellow;
   display: inline;
 
-  &:hover {
-    color: #f7e83b;
+  span {
+    border-bottom: 1px solid transparent;
+  }
+
+  &:hover, &:focus {
+    color: $light-yellow;
+
+    span {
+      border-bottom-color: $yellow;
+    }
   }
 }
 
@@ -43,7 +61,7 @@
 
     &:focus, &:active {
       background-color: rgb(232, 232, 232);
-      color: #343a40;
+      color: $dark;
     }
   }
 }

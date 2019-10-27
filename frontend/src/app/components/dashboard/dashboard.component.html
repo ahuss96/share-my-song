@@ -1,0 +1,6 @@
+<div *ngFor="let user of songRecords">
+  <h3 *ngFor="let song of user.songs">{{song.name}}</h3>
+  <h3 *ngFor="let song of user.songs">{{song.artist}}</h3>
+  <h3 *ngFor="let song of user.songs">{{song.dateAdded}}</h3>
+</div>
+

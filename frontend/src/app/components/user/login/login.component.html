@@ -1,39 +1,51 @@
-<form class="login" [formGroup]="loginForm" (submit)="onSubmit()">
-  <div class="form-group row">
-    <div class="input-group">
-      <label for="username">Username</label>
-      <input
-        id="username"
-        type="text"
-        formControlName="username"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
-      <div *ngIf="submitted && !!f.username.errors" class="invalid-feedback">
-        <div class="error" *ngIf="!!f.username.errors.required">Username is required</div>
+<div class="login-container">
+  <form class="login card" [formGroup]="loginForm" (submit)="onSubmit()">
+    <div class="card-header">
+      <fa-icon class="login-icon" [icon]="faUser"></fa-icon>
+      <h3>Login</h3>
+    </div>
+
+    <div class="card-body">
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            placeholder="Username"
+            id="username"
+            type="text"
+            formControlName="username"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+          <div *ngIf="submitted && !!f.username.errors" class="invalid-feedback">
+            <div class="error" *ngIf="!!f.username.errors.required">Username is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            placeholder="Password"
+            id="password"
+            type="password"
+            formControlName="password"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+          <div *ngIf="submitted && !!f.password.errors" class="invalid-feedback">
+            <div class="error" *ngIf="!!f.password.errors.required">Password is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="invalid-feedback show-feedback" *ngIf="invalidDetails">
+        <div class="error">
+          Invalid credentials
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <div class="input-group">
-      <label for="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        formControlName="password"
-        class="form-control"
-        [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-      <div *ngIf="submitted && !!f.password.errors" class="invalid-feedback">
-        <div class="error" *ngIf="!!f.password.errors.required">Password is required</div>
-      </div>
+    <div class="card-footer">
+      <button type="submit" class="float-right btn btn-success">Login</button>
     </div>
-  </div>
+  </form>
+</div>
 
-  <div class="invalid-feedback show-feedback" *ngIf="invalidDetails">
-    <div class="error">
-      Invalid credentials
-    </div>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Login</button>
-</form>

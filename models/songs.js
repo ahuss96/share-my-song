@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 // user schema
 const SongsSchema = mongoose.Schema({
+    _id: {
+        type: ObjectId,
+        required: true
+    },
     songs: [{
         name: {
             type: String
@@ -17,25 +22,15 @@ const SongsSchema = mongoose.Schema({
 
 const Songs = module.exports = mongoose.model('Songs', SongsSchema);
 
-module.exports.getGuestById = function (id, callback) {
+module.exports.getSongsById = function (id, callback) {
     Songs.findById(id, callback);
 };
 
-module.exports.getGuestByName = function (name, callback) {
-    const query = {name: name};
-    Songs.findOne(query, callback);
+module.exports.initSongRecord = function (newSongs, callback) {
+    newSongs.save(callback);
 };
 
-module.exports.getGuestByUsername = function (username, callback) {
-    const query = {username: username};
-    Songs.findOne(query, callback);
-};
-
-module.exports.addGuest = function (newGuest, callback) {
-    newGuest.save(callback);
-};
-
-module.exports.updateById = function (guest, callback) {
-    const query = {'_id': guest.id};
-    Songs.replaceOne(query, guest, callback)
+module.exports.updateById = function (songs, callback) {
+    const query = {'_id': songs.id};
+    Songs.replaceOne(query, songs, callback)
 };

@@ -1,0 +1,22 @@
+.btn-outline-dark {
+  background-color: $dark;
+  border: 1px solid $yellow;
+  color: $yellow;
+
+  &:hover {
+    background-color: $yellow;
+    color: $dark;
+  }
+}
+
+.btn-primary {
+  background-color: $yellow;
+  border: 1px solid $yellow;
+  color: $dark;
+
+  &:hover {
+    background-color: $dark;
+    color: $yellow;
+    border: 1px solid $dark;
+  }
+}

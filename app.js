@@ -7,7 +7,10 @@ const mongoose = require('mongoose');
 const config = require('./config/database');
 
 // connect to database
-mongoose.connect(config.database);
+mongoose.connect(config.database, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 // on connection
 mongoose.connection.on('connected', () => {
@@ -21,7 +24,7 @@ mongoose.connection.on('error', (err) => {
 
 const app = express();
 
-const families = require('./controllers/guests');
+const songs = require('./controllers/songs');
 const users = require('./controllers/users');
 
 const PORT = process.env.PORT || 3000;
@@ -44,7 +47,7 @@ app.use(passport.session());
 
 require('./config/passport')(passport);
 
-app.use('/families', families);
+app.use('/songs', songs);
 app.use('/users', users);
 
 // index route

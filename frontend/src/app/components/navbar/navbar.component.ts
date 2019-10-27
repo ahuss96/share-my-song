@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth/auth.service";
 import { IUser } from "../user/user.model";
-import { faAngleDown, faAngleUp, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +11,7 @@ import { faAngleDown, faAngleUp, faSignOutAlt } from '@fortawesome/free-solid-sv
 export class NavbarComponent implements OnInit {
   user: IUser;
   faSignOutAlt = faSignOutAlt;
+  faSignInAlt = faSignInAlt;
   auth = this.authService;
 
   constructor(private authService: AuthService) { }

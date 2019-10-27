@@ -9,41 +9,42 @@ const Songs = require('../models/songs');
 
 // register
 router.post('/register', (req, res, next) => {
-    let newSongs = new Songs({
-        songs: []
+    let newUser = new User({
+        name: req.body.name,
+        email: req.body.email,
+        username: req.body.username,
+        password: req.body.password,
+        userType: req.body.userType,
     });
 
-    // initialise songs record within songs table, so id can be entered into user record
-    Songs.addGuest(newSongs, (err, song) => {
+    User.addUser(newUser, (err, user) => {
         if (err) {
-            console.log('Failed to initialise songs record');
-            console.log(err);
-            res.json({success: false, msg: 'Failed to initialise songs record'})
+            console.log('Failed to create user record');
+            res.json({success: false, msg: 'Failed to create user record'});
         }
         else {
-            console.log("User:", req.body.name, "has been assigned a songs record");
+            console.log("User:", user.name, "registered");
 
-            let newUser = new User({
-                name: req.body.name,
-                email: req.body.email,
-                username: req.body.username,
-                password: req.body.password,
-                userType: req.body.userType,
-                songsID: song._id
+            let newSongs = new Songs({
+                _id: user.id,
+                songs: []
             });
-
-            User.addUser(newUser, (err, user) => {
+            // initialise songs record within songs table, so id can be entered into user record
+            Songs.initSongRecord(newSongs, (err, songs) => {
                 if (err) {
-                    console.log('Failed to create user record');
-                    res.json({success: false, msg: 'Failed to create user record'});
+                    console.log('Failed to initialise songs record');
+                    console.log(err);
+                    res.json({success: false, msg: 'Failed to initialise songs record'})
                 }
                 else {
-                    console.log("User:", user.name, "registered");
-                    res.json({success: true, msg: `${user.name} registered`});
+                    console.log("User:", user.name, "songs record has been created.");
+                    res.json({success: true, msg: `${user.name} registered and songs record initialised.`});
                 }
-            })
+            });
         }
-    });
+    })
+
+
 });
 
 // authenticate
@@ -63,6 +64,8 @@ router.post('/authenticate', (req, res, next) => {
                 const token = jwt.sign({data: user}, config.secret, {
                     expiresIn: 604800 // 1 week
                 });
+
+                console.log(user.name, "logged in");
 
                 res.json({
                     success: true,

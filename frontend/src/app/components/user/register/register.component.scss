@@ -1,0 +1,39 @@
+@import '../../../../sass/custom/colours';
+
+.register-container {
+  width: 400px;
+  margin: 0 auto;
+  padding: 30px 0;
+
+  .register-icon {
+    font-size: 30px;
+    color: $yellow;
+  }
+}
+
+.card-header {
+  background-color: $dark;
+  text-align: center;
+  padding: 5px 0;
+
+  h3 {
+    font-size: 22px;
+    font-weight: 400;
+    text-align: center;
+    color: $yellow;
+  }
+}
+
+.card-body {
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.card-footer {
+  button {
+    width: 100%;
+  }
+}
+
+

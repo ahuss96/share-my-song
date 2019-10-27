@@ -1,8 +1,8 @@
-import { Component, OnInit} from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../../../services/auth/auth.service";
 import { Router } from "@angular/router";
-import { NavbarComponent } from "../../navbar/navbar.component";
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +13,9 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted: boolean;
   invalidDetails: boolean;
+  faUser = faUser;
 
-  constructor(private auth: AuthService, private router: Router, private navbar: NavbarComponent) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
     // init loginForm
